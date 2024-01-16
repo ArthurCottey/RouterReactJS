@@ -3,25 +3,23 @@ import {Navbar} from "./Navbar";
 import {Home} from "./pages/Home"
 import {About} from "./pages/About"
 import {Blogs} from "./pages/Blogs"
+import {Route, Routes} from "react-router-dom";
+import musique from './musique.mp3';
 
 function App() {
-    let component
-    switch (window.location.pathname) {
-        case "/":
-            component = <Home />
-            break
-        case "/about":
-            component = <About />
-            break
-        case "/blogs":
-            component = <Blogs />
-            break
-    }
   return (
-    <div className="App">
-      <Navbar />
-        {component}
-    </div>
+      <div className="App">
+          <Navbar/>
+          <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/about" element={<About/>}/>
+              <Route path="/blogs" element={<Blogs/>}/>
+          </Routes>
+          <figure>
+              <figcaption>Heuss L'Enfoiré - Saiyan ft. Gazo</figcaption>
+              <audio controls src={musique}></audio>
+          </figure>
+      </div>
   );
 }
 

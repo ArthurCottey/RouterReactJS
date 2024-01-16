@@ -29,12 +29,12 @@ nav ul {
     font-size: 18px
 }
 
-nav ul a {
+nav ul .link {
     color: white;
     text-decoration: none;
 }
 
-nav ul a:hover, nav ul a.active {
+nav ul .link:hover, nav ul .link.active {
     color: #61dafb;
 }
 

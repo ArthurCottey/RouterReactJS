@@ -1,4 +1,5 @@
 import react from 'react'
+import {Link, useMatch, use, useResolvedPath} from 'react-router-dom'
 import logo from './logo.svg';
 
 export const Navbar = () => {
@@ -9,20 +10,23 @@ export const Navbar = () => {
                   <img src={logo} className="App-logo" alt="logo"/>
               </div>
               <ul>
-                  <CustomLink href="/">Home</CustomLink>
-                  <CustomLink href="/about">About</CustomLink>
-                  <CustomLink href="/blogs">Blogs</CustomLink>
+                  <CustomLink to="/">Home</CustomLink>
+                  <CustomLink to="/about">About</CustomLink>
+                  <CustomLink to="/blogs">Blogs</CustomLink>
               </ul>
           </div>
       </nav>
   )
 }
 
-function CustomLink({ href, children, ...props}) {
-    let path = window.location.pathname
+function CustomLink({ to, children, ...props}) {
+    const resolvedPath = useResolvedPath(to)
+    const isActive = useMatch({path: resolvedPath.pathname, end: true})
     return (
-        <li >
-            <a href={href} {...props} className={path === href ? 'active' : ''}>{children}</a>
+        <li>
+            <Link to={to} className={isActive ? 'link active' : 'link'} {...props}>
+                {children}
+            </Link>
         </li>
     )
 }
