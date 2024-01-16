@@ -9,17 +9,20 @@ export const Navbar = () => {
                   <img src={logo} className="App-logo" alt="logo"/>
               </div>
               <ul>
-                  <li>
-                      <a href="#" className="active">Home</a>
-                  </li>
-                  <li>
-                      <a href="#" className="">About</a>
-                  </li>
-                  <li>
-                      <a href="#" className="">Blogs</a>
-                  </li>
+                  <CustomLink href="/">Home</CustomLink>
+                  <CustomLink href="/about">About</CustomLink>
+                  <CustomLink href="/blogs">Blogs</CustomLink>
               </ul>
           </div>
       </nav>
   )
+}
+
+function CustomLink({ href, children, ...props}) {
+    let path = window.location.pathname
+    return (
+        <li >
+            <a href={href} {...props} className={path === href ? 'active' : ''}>{children}</a>
+        </li>
+    )
 }
